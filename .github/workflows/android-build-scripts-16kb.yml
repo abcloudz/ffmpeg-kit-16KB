@@ -42,6 +42,8 @@ jobs:
           sudo apt install -y libtasn1-bin libtasn1-6-dev libidn2-0-dev gawk gperf
           sudo apt install -y libtss2-dev libunbound-dev dns-root-data bison gtk-doc-tools
           sudo apt install -y texinfo texlive texlive-plain-generic texlive-extra-utils
+          sudo apt install -y libfreetype6-dev libglib2.0-dev libcairo2-dev
+          sudo apt install -y pkg-config
       - name: set up adopt jdk 17
         uses: actions/setup-java@v3
         with:
@@ -92,6 +94,8 @@ jobs:
           sudo apt install -y libtasn1-bin libtasn1-6-dev libidn2-0-dev gawk gperf
           sudo apt install -y libtss2-dev libunbound-dev dns-root-data bison gtk-doc-tools
           sudo apt install -y texinfo texlive texlive-plain-generic texlive-extra-utils
+          sudo apt install -y libfreetype6-dev libglib2.0-dev libcairo2-dev
+          sudo apt install -y pkg-config
       - name: set up adopt jdk 17
         uses: actions/setup-java@v3
         with:
