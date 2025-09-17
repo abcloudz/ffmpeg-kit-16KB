@@ -28,7 +28,7 @@ on:
 jobs:
   build-main-on-linux:
     name: android main on linux (ndk-r25-16k)
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     defaults:
       run:
         shell: bash
@@ -44,8 +44,8 @@ jobs:
           sudo apt install -y texinfo texlive texlive-plain-generic texlive-extra-utils
           sudo apt install -y libfreetype6-dev libglib2.0-dev libcairo2-dev ragel
           sudo apt install -y pkg-config nasm yasm libunistring-dev ninja-build
-          sudo apt install -y --reinstall gcc-12
-          sudo ln -s -f /usr/bin/gcc-12 /usr/bin/gcc
+          sudo apt install -y --reinstall gcc-14
+          sudo ln -s -f /usr/bin/gcc-14 /usr/bin/gcc
           export OPENSSL_ROOT_DIR=/usr/include/openssl
           wget https://cmake.org/files/v3.31/cmake-3.31.8.tar.gz
           tar -xzvf cmake-3.31.8.tar.gz
@@ -96,7 +96,7 @@ jobs:
 
   build-lts-on-linux:
     name: android lts on linux (ndk-r25-16k)
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     defaults:
       run:
         shell: bash
@@ -112,8 +112,8 @@ jobs:
           sudo apt install -y texinfo texlive texlive-plain-generic texlive-extra-utils
           sudo apt install -y libfreetype6-dev libglib2.0-dev libcairo2-dev ragel
           sudo apt install -y pkg-config nasm yasm libunistring-dev ninja-build
-          sudo apt install -y --reinstall gcc-12
-          sudo ln -s -f /usr/bin/gcc-12 /usr/bin/gcc
+          sudo apt install -y --reinstall gcc-14
+          sudo ln -s -f /usr/bin/gcc-14 /usr/bin/gcc
           export OPENSSL_ROOT_DIR=/usr/include/openssl
           wget https://cmake.org/files/v3.31/cmake-3.31.8.tar.gz
           tar -xzvf cmake-3.31.8.tar.gz
