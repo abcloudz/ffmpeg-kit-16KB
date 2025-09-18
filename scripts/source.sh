@@ -63,7 +63,7 @@ get_library_source() {
     ;;
   gnutls)
     SOURCE_REPO_URL="https://github.com/arthenica/gnutls"
-    SOURCE_ID="3.7.9"
+    SOURCE_ID="3.8.10"
     SOURCE_TYPE="TAG"
     ;;
   harfbuzz)
