@@ -302,10 +302,9 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
       if [[ ${RC} -ne 0 ]]; then
         echo -e "DEBUG: Failed to copy the license file of ${ENABLED_LIBRARY}\n" 1>>"${BASEDIR}"/build.log 2>&1
         echo -e "failed\n\nSee build.log for details\n"
-        exit 1
+      else
+        echo -e "DEBUG: Copied the license file of ${ENABLED_LIBRARY} successfully\n" 1>>"${BASEDIR}"/build.log 2>&1  
       fi
-
-      echo -e "DEBUG: Copied the license file of ${ENABLED_LIBRARY} successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
     fi
   done
 
@@ -323,10 +322,9 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
     if [[ ${RC} -ne 0 ]]; then
       echo -e "DEBUG: Failed to copy the license file of custom library ${!library_name}\n" 1>>"${BASEDIR}"/build.log 2>&1
       echo -e "failed\n\nSee build.log for details\n"
-      exit 1
+    else
+      echo -e "DEBUG: Copied the license file of custom library ${!library_name} successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
     fi
-
-    echo -e "DEBUG: Copied the license file of custom library ${!library_name} successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
   done
 
   # COPY LIBRARY LICENSES
