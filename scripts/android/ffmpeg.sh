@@ -474,7 +474,7 @@ fi
   ${CONFIGURE_POSTFIX} 1>>"${BASEDIR}"/build.log 2>&1
 
 if [[ $? -ne 0 ]]; then
-  echo -e "failed\n\nSee build.log for details\n"
+  echo -e "failed\n\nSee build.log for details\nffmpeg 01"
   exit 1
 fi
 
@@ -482,7 +482,7 @@ if [[ -z ${NO_OUTPUT_REDIRECTION} ]]; then
   make -j$(get_cpu_count) 1>>"${BASEDIR}"/build.log 2>&1
 
   if [[ $? -ne 0 ]]; then
-    echo -e "failed\n\nSee build.log for details\n"
+    echo -e "failed\n\nSee build.log for details\nffmpeg 02"
     exit 1
   fi
 else
@@ -490,7 +490,7 @@ else
   make -j$(get_cpu_count)
 
   if [[ $? -ne 0 ]]; then
-    echo -n -e "\n${LIB_NAME}: failed\n\nSee build.log for details\n"
+    echo -n -e "\n${LIB_NAME}: failed\n\nSee build.log for details\nffmpeg 03"
     exit 1
   else
     echo -n -e "\n${LIB_NAME}: "
@@ -504,7 +504,7 @@ fi
 make install 1>>"${BASEDIR}"/build.log 2>&1
 
 if [[ $? -ne 0 ]]; then
-  echo -e "failed\n\nSee build.log for details\n"
+  echo -e "failed\n\nSee build.log for details\nffmpeg 04"
   exit 1
 fi
 
@@ -538,6 +538,6 @@ overwrite_file "${BASEDIR}"/src/ffmpeg/libavutil/x86/emms.h "${FFMPEG_LIBRARY_PA
 if [ $? -eq 0 ]; then
   echo "ok"
 else
-  echo -e "failed\n\nSee build.log for details\n"
+  echo -e "failed\n\nSee build.log for details\nffmpeg 05"
   exit 1
 fi
