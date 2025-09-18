@@ -389,9 +389,8 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
     echo -e "INFO: Skipped creating Android archive.\n" 1>>"${BASEDIR}"/build.log 2>&1
   fi
 
-  ./gradlew tasks 1>>"${BASEDIR}"/build.log 2>&1
+  ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
   ./gradlew publishToMavenCentral 1>>"${BASEDIR}"/build.log 2>&1
-  ./gradlew ffmpeg-kit-android-lib:publishToMavenCentral 1>>"${BASEDIR}"/build.log 2>&1
   if [ $? -ne 0 ]; then
     echo -e "failed publishToMavenCentral\n"
   fi
