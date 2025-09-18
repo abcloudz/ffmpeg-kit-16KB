@@ -1,3 +1,5 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+
 plugins {
     id "com.android.library"
     id "maven-publish"
@@ -54,6 +56,13 @@ task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     configurations.implementation.setCanBeResolved(true)
     classpath += configurations.implementation
+}
+
+mavenPublishing {
+  // the first parameter represennts which variant is published
+  // the second whether to publish a sources jar
+  // the third whether to publish a javadoc jar
+  configure(new AndroidSingleVariantLibrary("release", true, true))
 }
 
 dependencies {
