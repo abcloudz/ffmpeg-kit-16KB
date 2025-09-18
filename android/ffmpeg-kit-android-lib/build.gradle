@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'com.vanniktech.maven.publish'
+    id 'com.gradleup.nmcp'
+}
 
 android {
     if (project.android.hasProperty("namespace")) {
@@ -38,14 +42,6 @@ android {
         unitTests.returnDefaultValues = true
         unitTests.all {
             systemProperty 'enable.ffmpeg.kit.test.mode', 'true'
-        }
-    }
-
-
-    publishing {
-        singleVariant('release') {
-            withJavadocJar()
-            withSourcesJar()
         }
     }
 }
