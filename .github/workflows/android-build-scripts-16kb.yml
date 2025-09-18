@@ -37,7 +37,7 @@ jobs:
       - name: set up build tools
         run: |
           sudo apt update && sudo apt -y install build-essential gperf groff meson autoconf automake autogen gnulib gettext gtk-doc-tools gnutls-bin libgnutls28-dev libssl-dev
-          sudo apt install -y dash git-core autoconf libtool gettext autopoint
+          sudo apt install -y dash git-core autoconf libtool gettext autopoint libavutil-dev
           sudo apt install -y automake python3 nettle-dev libp11-kit-dev libtspi-dev libunistring-dev
           sudo apt install -y libtasn1-bin libtasn1-6-dev libidn2-0-dev gawk gperf
           sudo apt install -y libtss2-dev libunbound-dev dns-root-data bison gtk-doc-tools
@@ -68,7 +68,7 @@ jobs:
         run: ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --uninstall "cmake;3.10.2.4988404" "cmake;3.18.1"
       - name: set up android ndk r25 (16k support)
         run: |
-          curl -L -s "https://dl.google.com/android/repository/android-ndk-r25c-linux.zip" -o ndk.zip
+          curl -L -s "https://dl.google.com/android/repository/android-ndk-r27d-linux.zip" -o ndk.zip
           unzip -q -o ndk.zip -d .ndk
           echo "ANDROID_NDK_ROOT=$PWD/.ndk/$(ls .ndk)" >> $GITHUB_ENV
       - name: run the build script
@@ -93,7 +93,7 @@ jobs:
         run: cat build.log
       - name: print ffbuild logs
         if: ${{ failure() }}
-        run: '[[ -f ./src/ffmpeg/ffbuild/config.log ]] && tail -50 ./src/ffmpeg/ffbuild/config.log'
+        run: '[[ -f ./src/ffmpeg/ffbuild/config.log ]] && tail -500 ./src/ffmpeg/ffbuild/config.log'
 
   build-lts-on-linux:
     name: android lts on linux (ndk-r25-16k)
@@ -106,7 +106,7 @@ jobs:
       - name: set up build tools
         run: |
           sudo apt update && sudo apt -y install build-essential gperf groff meson autoconf automake autogen gnulib gettext gtk-doc-tools gnutls-bin libgnutls28-dev libssl-dev
-          sudo apt install -y dash git-core autoconf libtool gettext autopoint
+          sudo apt install -y dash git-core autoconf libtool gettext autopoint libavutil-dev
           sudo apt install -y automake python3 nettle-dev libp11-kit-dev libtspi-dev libunistring-dev
           sudo apt install -y libtasn1-bin libtasn1-6-dev libidn2-0-dev gawk gperf
           sudo apt install -y libtss2-dev libunbound-dev dns-root-data bison gtk-doc-tools
@@ -137,7 +137,7 @@ jobs:
         run: ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --uninstall "cmake;3.10.2.4988404" "cmake;3.18.1"
       - name: set up android ndk r25 (16k support)
         run: |
-          curl -L -s "https://dl.google.com/android/repository/android-ndk-r25c-linux.zip" -o ndk.zip
+          curl -L -s "https://dl.google.com/android/repository/android-ndk-r27d-linux.zip" -o ndk.zip
           unzip -q -o ndk.zip -d .ndk
           echo "ANDROID_NDK_ROOT=$PWD/.ndk/$(ls .ndk)" >> $GITHUB_ENV
       - name: run the build script
@@ -162,7 +162,7 @@ jobs:
         run: cat build.log
       - name: print ffbuild logs
         if: ${{ failure() }}
-        run: '[[ -f ./src/ffmpeg/ffbuild/config.log ]] && tail -50 ./src/ffmpeg/ffbuild/config.log'
+        run: '[[ -f ./src/ffmpeg/ffbuild/config.log ]] && tail -500 ./src/ffmpeg/ffbuild/config.log'
 
   create-release:
     name: create github release
