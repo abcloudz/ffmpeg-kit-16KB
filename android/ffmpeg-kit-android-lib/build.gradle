@@ -2,7 +2,6 @@ import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
 
 plugins {
     id "com.android.library"
-    id "maven-publish"
     id "com.vanniktech.maven.publish"
     id "com.gradleup.nmcp"
 }
@@ -39,6 +38,10 @@ android {
         main {
             jniLibs.srcDirs = ["../libs"]
         }
+    }
+
+    publishing {
+        singleVariant("release")
     }
 
     testOptions {
