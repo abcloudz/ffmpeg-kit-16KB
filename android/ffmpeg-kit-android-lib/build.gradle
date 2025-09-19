@@ -60,7 +60,9 @@ mavenPublishing {
   // the first parameter represennts which variant is published
   // the second whether to publish a sources jar
   // the third whether to publish a javadoc jar
-  configure(new AndroidSingleVariantLibrary("release", true, true))
+//   configure(new AndroidSingleVariantLibrary("release", true, true))
+    publishToMavenCentral()
+    signAllPublications()
 }
 
 dependencies {
