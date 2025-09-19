@@ -39,10 +39,6 @@ android {
         }
     }
 
-    publishing {
-        singleVariant("release")
-    }
-
     testOptions {
         unitTests.returnDefaultValues = true
         unitTests.all {
