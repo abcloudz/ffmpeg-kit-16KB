@@ -373,6 +373,12 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
       exit 1
     fi
 
+    ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
+    ./gradlew publishToMavenCentral 1>>"${BASEDIR}"/build.log 2>&1
+    if [ $? -ne 0 ]; then
+      echo -e "failed publishToMavenCentral\n"
+    fi
+
     # COPY ANDROID ARCHIVE TO PREBUILT DIRECTORY
     FFMPEG_KIT_AAR="${BASEDIR}/prebuilt/$(get_aar_directory)/ffmpeg-kit"
     rm -rf "${FFMPEG_KIT_AAR}" 1>>"${BASEDIR}"/build.log 2>&1
@@ -387,11 +393,5 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
     echo -e "ok\n"
   else
     echo -e "INFO: Skipped creating Android archive.\n" 1>>"${BASEDIR}"/build.log 2>&1
-  fi
-
-  ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
-  ./gradlew publishToMavenCentral 1>>"${BASEDIR}"/build.log 2>&1
-  if [ $? -ne 0 ]; then
-    echo -e "failed publishToMavenCentral\n"
   fi
 fi
