@@ -365,15 +365,16 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
 
     echo -e -n "\nCreating Android archive under prebuilt: "
 
+    ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
+
     # BUILD ANDROID ARCHIVE
     rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest publishToMavenCentral --debug 1>>"${BASEDIR}"/build.log 2>&1
+    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest printEnvVariable publishToMavenCentral --debug 1>>"${BASEDIR}"/build.log 2>&1
     if [ $? -ne 0 ]; then
       echo -e "failed\n"
       exit 1
     fi
 
-    ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
     # ./gradlew publishAllPublicationsToMavenCentralRepository 1>>"${BASEDIR}"/build.log 2>&1
     # ./gradlew publishToMavenCentral 1>>"${BASEDIR}"/build.log 2>&1
     # if [ $? -ne 0 ]; then
