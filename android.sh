@@ -371,17 +371,15 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
 
     # BUILD ANDROID ARCHIVE
     rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest --info --stacktrace 1>>"${BASEDIR}"/build.log 2>&1
+    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest publishToMavenCentral --info --stacktrace 1>>"${BASEDIR}"/build.log 2>&1
     if [ $? -ne 0 ]; then
       echo -e "failed\n"
       exit 1
     fi
 
-    ./gradlew publishToMavenCentral --info --stacktrace 1>>"${BASEDIR}"/build.log 2>&1
-
-    if [ $? -ne 0 ]; then
-      echo -e "failed publishToMavenCentral\n"
-    fi
+    # if [ $? -ne 0 ]; then
+      # echo -e "failed publishToMavenCentral\n"
+    # fi
 
     ls -la "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/ 1>>"${BASEDIR}"/build.log 2>&1
     ls -la "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ 1>>"${BASEDIR}"/build.log 2>&1

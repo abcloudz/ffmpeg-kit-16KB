@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-    id "com.vanniktech.maven.publish" version "0.34.0"
+    id "com.vanniktech.maven.publish" version "0.34.0" apply false
 }
 
 allprojects {
@@ -23,50 +23,13 @@ task cleanb(type: Delete) {
     delete rootProject.buildDir
 }
 
-task printEnvVariable {
-    doLast {
-        def myVariable = System.getenv('ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID')
-        if (myVariable != null) {
-            println "Value of ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID: $myVariable"
-        } else {
-            println "ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID is not set."
-        }
-    }
-}
-
-mavenPublishing {
-  // the first parameter represennts which variant is published
-  // the second whether to publish a sources jar
-  // the third whether to publish a javadoc jar
-//   configure(new AndroidSingleVariantLibrary("release", true, true))
-    publishToMavenCentral()
-    signAllPublications()
-
-    coordinates("io.github.jamaismagic", "ffmpeg-kit-16kb", "6.0.1")
-
-    pom {
-        name = "FFMPEG Android 16KB"
-        description = "FFmpeg Kit for Android (Maven Package for https://github.com/JamaisMagic/ffmpeg-kit-16KB)."
-        inceptionYear = "2025"
-        url = "https://github.com/JamaisMagic/ffmpeg-kit-16KB"
-        licenses {
-            license {
-                name = "GNU LESSER GENERAL PUBLIC LICENSE Version 3"
-                url = "https://www.gnu.org/licenses/lgpl-3.0.txt"
-                distribution = "https://www.gnu.org/licenses/lgpl-3.0.txt"
-            }
-        }
-        developers {
-            developer {
-                id = "JamaisMagic"
-                name = "JamaisNg"
-                url = "https://github.com/JamaisMagic"
-            }
-        }
-        scm {
-            url = "https://github.com/JamaisMagic/ffmpeg-kit-16KB"
-            connection = "scm:git@github.com:JamaisMagic/ffmpeg-kit-16KB.git"
-            developerConnection = "=scm:git@github.com:JamaisMagic/ffmpeg-kit-16KB.git"
-        }
-    }
-}
+// task printEnvVariable {
+//     doLast {
+//         def myVariable = System.getenv('ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID')
+//         if (myVariable != null) {
+//             println "Value of ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID: $myVariable"
+//         } else {
+//             println "ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID is not set."
+//         }
+//     }
+// }
