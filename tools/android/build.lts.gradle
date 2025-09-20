@@ -47,12 +47,12 @@ android {
     }
 
 
-    publishing {
-        singleVariant('release') {
-            withJavadocJar()
-            withSourcesJar()
-        }
-    }
+    // publishing {
+    //     singleVariant('release') {
+    //         withJavadocJar()
+    //         withSourcesJar()
+    //     }
+    // }
 }
 
 task javadoc(type: Javadoc) {
