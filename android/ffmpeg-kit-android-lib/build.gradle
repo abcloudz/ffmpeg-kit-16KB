@@ -57,17 +57,6 @@ task javadoc(type: Javadoc) {
     classpath += configurations.implementation
 }
 
-task printEnvVariable {
-    doLast {
-        def myVariable = System.getenv('ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID')
-        if (myVariable != null) {
-            println "Value of ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID: $myVariable"
-        } else {
-            println "ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID is not set."
-        }
-    }
-}
-
 mavenPublishing {
   // the first parameter represennts which variant is published
   // the second whether to publish a sources jar
