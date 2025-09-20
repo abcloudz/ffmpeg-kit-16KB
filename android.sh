@@ -365,15 +365,21 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
 
     echo -e -n "\nCreating Android archive under prebuilt: "
 
+    echo $ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID 1>>"${BASEDIR}"/build.log 2>&1
     ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
+    ./gradlew printEnvVariable 1>>"${BASEDIR}"/build.log 2>&1
 
     # BUILD ANDROID ARCHIVE
     rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest printEnvVariable publishToMavenCentral --debug 1>>"${BASEDIR}"/build.log 2>&1
+    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest publishToMavenLocal publishToMavenCentral --debug 1>>"${BASEDIR}"/build.log 2>&1
     if [ $? -ne 0 ]; then
       echo -e "failed\n"
       exit 1
     fi
+
+    ls -la "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/ 1>>"${BASEDIR}"/build.log 2>&1
+    ls -la "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ 1>>"${BASEDIR}"/build.log 2>&1
+    ls -la $HOME/.m2/repository 1>>"${BASEDIR}"/build.log 2>&1
 
     # ./gradlew publishAllPublicationsToMavenCentralRepository 1>>"${BASEDIR}"/build.log 2>&1
     # ./gradlew publishToMavenCentral 1>>"${BASEDIR}"/build.log 2>&1
