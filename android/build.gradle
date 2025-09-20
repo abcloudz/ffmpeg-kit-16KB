@@ -22,14 +22,3 @@ allprojects {
 task cleanb(type: Delete) {
     delete rootProject.buildDir
 }
-
-// task printEnvVariable {
-//     doLast {
-//         def myVariable = System.getenv('ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID')
-//         if (myVariable != null) {
-//             println "Value of ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID: $myVariable"
-//         } else {
-//             println "ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID is not set."
-//         }
-//     }
-// }
