@@ -1,9 +1,4 @@
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
-
-plugins {
-    id "com.android.library"
-    id "com.vanniktech.maven.publish"
-}
+apply plugin: 'com.android.library'
 
 android {
     if (project.android.hasProperty("namespace")) {
@@ -43,6 +38,14 @@ android {
         unitTests.returnDefaultValues = true
         unitTests.all {
             systemProperty 'enable.ffmpeg.kit.test.mode', 'true'
+        }
+    }
+
+
+    publishing {
+        singleVariant('release') {
+            withJavadocJar()
+            withSourcesJar()
         }
     }
 }
