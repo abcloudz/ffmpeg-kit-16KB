@@ -155,10 +155,15 @@ jobs:
           unzip -q -o ndk.zip -d .ndk
           echo "ANDROID_NDK_ROOT=$PWD/.ndk/$(ls .ndk)" >> $GITHUB_ENV
       - name: run the build script
-        # run: ./android.sh -d --lts --full --enable-gpl --disable-arm-v7a --disable-lib-openssl
-        # run: ./android.sh -d --lts --enable-android-media-codec --enable-android-zlib --enable-gpl --enable-gnutls --enable-libaom --enable-libass --enable-freetype --enable-lame --enable-opus --enable-dav1d --enable-libvorbis --enable-libvpx --enable-x265
-        # run: ./android.sh -d --lts --disable-arm-v7a --enable-android-media-codec --enable-android-zlib --enable-gpl --enable-gnutls --enable-freetype --enable-lame --enable-dav1d --enable-libvorbis --enable-libvpx --enable-x265
-        run: ./android.sh -d --lts --disable-arm-v7a --enable-android-media-codec --enable-android-zlib
+        run: ./android.sh -d --lts --enable-android-media-codec --enable-android-zlib
+      - name: Upload libs on failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-libs-on-failure
+          path: android/   # e.g. app/build/outputs/** or wherever your libs live
+          if-no-files-found: warn
+          compression-level: 6
       - name: prepare and upload lts aar
         run: |
           AAR_PATH=$(find prebuilt -type f -name 'ffmpeg-kit.aar')

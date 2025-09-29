@@ -365,13 +365,12 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
 
     echo -e -n "\nCreating Android archive under prebuilt: "
 
-    echo $ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew tasks --all 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew printEnvVariable 1>>"${BASEDIR}"/build.log 2>&1
+    echo $ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYID
+    ./gradlew tasks --all
 
     # BUILD ANDROID ARCHIVE
-    rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest publishToMavenCentral --info --stacktrace 1>>"${BASEDIR}"/build.log 2>&1
+    rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar
+    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease --info --stacktrace
     if [ $? -ne 0 ]; then
       echo -e "failed\n"
       exit 1
