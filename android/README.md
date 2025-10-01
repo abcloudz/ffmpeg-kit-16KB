@@ -1,3 +1,16 @@
+## -----------------------
+This is the library fork that contains pre-compiled libraries for Android min ffmpeg-kit library setup.
+
+
+Libraries are compiled via github actions `android-build-scripts-16kb` workflow with a minimum setup `./android.sh -d --lts --enable-android-media-codec --enable-android-zlib --disable-arm-v7a-neon`
+
+Libraries are placed into android/libs directory.
+
+Use `./gradlew clean ffmpeg-kit-android-lib:assemble --info` to build the library from `android` dir.
+
+## -----------------------
+
+
 # FFmpegKit for Android
 
 ### 1. Features
